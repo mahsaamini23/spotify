@@ -1,4 +1,6 @@
 import styles from '../styles/Home.module.css'
+import CardList from '../component/cardList';
+import { NameCardList } from '../database/data';
 import Grid from '@mui/material/Grid';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -22,7 +24,7 @@ import IconButton from '@mui/material/IconButton';
 
 export default function Home() {
   return (
-    <Grid>
+    <Grid bgColor="#121212">
       <Grid >
         <AppBar sx={{backgroundColor:'#101010', }}>
           <Toolbar sx={{marginLeft:'230px',display:'flex', justifyContent:'space-between'}}>
@@ -41,41 +43,49 @@ export default function Home() {
           </Toolbar>
         </AppBar>
       </Grid>
-      <Drawer variant="permanent" PaperProps={{sx: { width: "18%" ,backgroundColor:'#000'},}}>
-        <Box sx={{backgroundColor:'#000', padding:'22px 0 10px 22px'}}>
-          <Image 
-            src={logo}
-            width={120}
-            height={36}
-          />
-        </Box>
-        <List>
-          <Box sx={{marginBottom:'30px'}}>
-            <ListItem sx={{display:'flex', gap:'10px',height:'35px'}}>
-              <HomeIcon sx={{color:'#fff',fontSize:30}}/>
-              <Typography sx={{color:'#fff', fontSize:'12px', fontWeight:'bolder'}}>Home</Typography>
-            </ListItem>
-            <ListItem sx={{display:'flex', gap:'10px',height:'35px'}}>
-              <SearchIcon sx={{color:'#b2b2b2',fontSize:30}}/>
-              <Typography sx={{color:'#b2b2b2',fontSize:'12px', fontWeight:'bolder'}}>Search</Typography>
-            </ListItem>
-            <ListItem sx={{display:'flex', gap:'10px',height:'35px'}}>
-              <VideoLibraryIcon sx={{color:'#b2b2b2'}}/>
-              <Typography sx={{color:'#b2b2b2',fontSize:'12px', fontWeight:'bolder'}}>Your Library</Typography>
-            </ListItem>
+      <Grid sx={{display:'flex', justifyContent:'flex-start'}}>
+        <Drawer variant="permanent" PaperProps={{sx: { width: "18%" ,backgroundColor:'#000'},}}>
+          <Box sx={{backgroundColor:'#000', padding:'22px 0 10px 22px'}}>
+            <Image 
+              src={logo}
+              width={120}
+              height={36}
+            />
           </Box>
-          <Box>
-          <ListItem sx={{display:'flex', gap:'10px',height:'35px'}}>
-              <AddBoxIcon sx={{color:'#b2b2b2',fontSize:30}}/>
-              <Typography sx={{color:'#b2b2b2',fontSize:'12px', fontWeight:'bolder'}}>Create Playlist</Typography>
-            </ListItem>
-            <ListItem sx={{display:'flex', gap:'10px',height:'35px'}}>
-              <BookmarkAddIcon sx={{color:'#b2b2b2',fontSize:30}}/>
-              <Typography sx={{color:'#b2b2b2',fontSize:'12px', fontWeight:'bolder'}}>Liked Songs</Typography>
-            </ListItem>
-          </Box>
-        </List>
-      </Drawer>
+          <List>
+            <Box sx={{marginBottom:'30px'}}>
+              <ListItem sx={{display:'flex', gap:'10px',height:'35px'}}>
+                <HomeIcon sx={{color:'#fff',fontSize:30}}/>
+                <Typography sx={{color:'#fff', fontSize:'12px', fontWeight:'bolder'}}>Home</Typography>
+              </ListItem>
+              <ListItem sx={{display:'flex', gap:'10px',height:'35px'}}>
+                <SearchIcon sx={{color:'#b2b2b2',fontSize:30}}/>
+                <Typography sx={{color:'#b2b2b2',fontSize:'12px', fontWeight:'bolder'}}>Search</Typography>
+              </ListItem>
+              <ListItem sx={{display:'flex', gap:'10px',height:'35px'}}>
+                <VideoLibraryIcon sx={{color:'#b2b2b2'}}/>
+                <Typography sx={{color:'#b2b2b2',fontSize:'12px', fontWeight:'bolder'}}>Your Library</Typography>
+              </ListItem>
+            </Box>
+            <Box>
+              <ListItem sx={{display:'flex', gap:'10px',height:'35px'}}>
+                <AddBoxIcon sx={{color:'#b2b2b2',fontSize:30}}/>
+                <Typography sx={{color:'#b2b2b2',fontSize:'12px', fontWeight:'bolder'}}>Create Playlist</Typography>
+              </ListItem>
+              <ListItem sx={{display:'flex', gap:'10px',height:'35px'}}>
+                <BookmarkAddIcon sx={{color:'#b2b2b2',fontSize:30}}/>
+                <Typography sx={{color:'#b2b2b2',fontSize:'12px', fontWeight:'bolder'}}>Liked Songs</Typography>
+              </ListItem>
+            </Box>
+          </List>
+        </Drawer>
+      
+        <Grid sx={{width:'100%',margin:'60px 0 0 150px', padding:'20px 20px 20px 20px',backgroundColor:'#121212'}}>
+          {NameCardList.map(item => (
+            <CardList item={item}/>
+          ))}
+        </Grid>
+      </Grid>
     </Grid>
   )
 }
